@@ -420,16 +420,14 @@ const Navbar: React.FC = () => {
               Our Team
             </Link>
 
-            <Link
-              to="/shop"
-              className={`px-3.5 py-2 rounded-full transition-all ${
-                location.pathname === '/shop'
-                  ? 'text-white bg-white/[0.1] font-bold'
-                  : 'text-white/80 hover:text-white hover:bg-white/[0.05]'
-              }`}
+            <a
+              href="https://www.facebook.com/camofridays/shop/?ref_code=mini_shop_page_card_cta&ref_surface=page"
+              target="_blank"
+              rel="noreferrer"
+              className="px-3.5 py-2 rounded-full transition-all text-white/80 hover:text-white hover:bg-white/[0.05]"
             >
               Shop
-            </Link>
+            </a>
 
             <Link
               to="/contact"
@@ -550,12 +548,14 @@ const Navbar: React.FC = () => {
                   >
                     Our Team
                   </Link>
-                  <Link
-                    to="/shop"
+                  <a
+                    href="https://www.facebook.com/camofridays/shop/?ref_code=mini_shop_page_card_cta&ref_surface=page"
+                    target="_blank"
+                    rel="noreferrer"
                     className="block px-3 py-2 rounded-lg hover:bg-white/5 hover:text-[#82b29a] transition-colors"
                   >
                     Shop Gear
-                  </Link>
+                  </a>
                   <Link
                     to="/contact"
                     className="block px-3 py-2 rounded-lg hover:bg-white/5 hover:text-[#82b29a] transition-colors"

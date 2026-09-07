@@ -103,17 +103,32 @@ const Footer: React.FC = () => {
                 { label: 'Ride for Mitch', path: '/ride-for-mitch' },
                 { label: 'Scholarship', path: '/scholarship' },
                 { label: 'Handbook', path: '/our-handbook' },
-                { label: 'Shop Apparel', path: '/shop' },
+                {
+                  label: 'Shop Apparel',
+                  href: 'https://www.facebook.com/camofridays/shop/?ref_code=mini_shop_page_card_cta&ref_surface=page',
+                },
                 { label: 'Donate', path: '/donate' },
               ].map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-[#82b29a] transition-all duration-200 inline-flex items-center gap-1.5 hover:translate-x-1"
-                  >
-                    <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
-                    <span>{item.label}</span>
-                  </Link>
+                <li key={item.label}>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 hover:text-[#82b29a] transition-all duration-200 inline-flex items-center gap-1.5 hover:translate-x-1"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
+                      <span>{item.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path!}
+                      className="text-gray-400 hover:text-[#82b29a] transition-all duration-200 inline-flex items-center gap-1.5 hover:translate-x-1"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
+                      <span>{item.label}</span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
