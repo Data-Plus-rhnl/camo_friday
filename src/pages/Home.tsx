@@ -100,14 +100,16 @@ const Home: React.FC = () => {
   };
 
   const nextVolunteers = () => {
-    setVolunteerIndex((prev) => (prev + 1) % (teamVolunteers.length - 2));
+    setVolunteerIndex((prev) => (prev + 1) % teamVolunteers.length);
   };
 
   const prevVolunteers = () => {
-    setVolunteerIndex((prev) =>
-      prev === 0 ? teamVolunteers.length - 3 : prev - 1
-    );
+    setVolunteerIndex((prev) => (prev - 1 + teamVolunteers.length) % teamVolunteers.length);
   };
+
+  const visibleVolunteers = Array.from({ length: 4 }, (_, i) =>
+    teamVolunteers[(volunteerIndex + i) % teamVolunteers.length]
+  );
 
   return (
     <div className="w-full overflow-hidden">
@@ -726,8 +728,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. VOLUNTEER & TEAM SECTION (Luxury Editorial Showcase) */}
-      <section className="py-24 sm:py-32 bg-[#faf9f6] relative overflow-hidden border-t border-gray-200/70">
+      {/* 5. VOLUNTEER & TEAM SECTION (4-Card Circular Carousel) */}
+      <section className="py-20 sm:py-28 bg-[#faf9f6] relative overflow-hidden border-t border-gray-200/70">
         {/* Community Hands Repeating Background Reused from Our Origin Section (about_bg_1.png) */}
         <div
           className="absolute inset-x-0 bottom-0 h-64 sm:h-72 lg:h-80 pointer-events-none z-0"
@@ -741,9 +743,9 @@ const Home: React.FC = () => {
         />
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Column: Narrative & Carousel Controls */}
-            <div className="lg:col-span-4 space-y-6">
+          {/* Header Row: Title, Narrative & Carousel Controls */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div className="max-w-2xl space-y-3.5">
               {/* Kicker Tag */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#82b29a]/15 text-[#426a57] font-['Rajdhani'] font-bold text-xs tracking-[0.2em] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#82b29a]" />
@@ -752,75 +754,87 @@ const Home: React.FC = () => {
 
               {/* Title */}
               <h2 className="font-['Rajdhani'] text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase text-[#1c2130] leading-[1.1] tracking-tight">
-                Our Grassroots <br /> Community
+                Our Grassroots Community
               </h2>
 
               {/* Narrative */}
-              <p className="text-[#5e6573] leading-relaxed text-[16px] font-sans">
+              <p className="text-[#5e6573] leading-relaxed text-[15px] sm:text-[16px] font-sans">
                 CamoFriday started with family and friends mourning the loss of Mitchell Slater. Today, our dedicated volunteer circle unites parents, advocates, and youth across B.C. to bring mental illness out from the shadows into open, life-saving conversations.
               </p>
+            </div>
 
-              {/* Interactive Controls & Link */}
-              <div className="pt-2 flex items-center gap-4">
-                <div className="flex items-center gap-2.5">
-                  <button
-                    onClick={prevVolunteers}
-                    className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#1b1e2c] text-[#1b1e2c] hover:bg-[#1b1e2c] hover:text-white shadow-sm hover:shadow-md flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-                    aria-label="Previous Team Members"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={nextVolunteers}
-                    className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#1b1e2c] text-[#1b1e2c] hover:bg-[#1b1e2c] hover:text-white shadow-sm hover:shadow-md flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-                    aria-label="Next Team Members"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <Link
-                  to="/our-team"
-                  className="inline-flex items-center gap-1.5 text-xs font-['Rajdhani'] font-bold uppercase tracking-widest text-[#426a57] hover:text-[#1c2130] transition-colors ml-2"
+            {/* Interactive Controls & Link */}
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <button
+                  onClick={prevVolunteers}
+                  className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#1b1e2c] text-[#1b1e2c] hover:bg-[#1b1e2c] hover:text-white shadow-sm hover:shadow-md flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  aria-label="Previous Team Members"
                 >
-                  <span>Meet All Members</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={nextVolunteers}
+                  className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-[#1b1e2c] text-[#1b1e2c] hover:bg-[#1b1e2c] hover:text-white shadow-sm hover:shadow-md flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  aria-label="Next Team Members"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
-            </div>
 
-            {/* Right Column: High-End Team Cards */}
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-                {teamVolunteers
-                  .slice(volunteerIndex, volunteerIndex + 3)
-                  .map((vol, idx) => (
-                    <div
-                      key={vol.name + idx}
-                      className="group bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-[0_15px_35px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.16)] transition-all duration-500 hover:-translate-y-1.5 p-3.5 flex flex-col"
-                    >
-                      <div className="overflow-hidden rounded-2xl bg-gray-100 aspect-[4/5] relative">
-                        <img
-                          src={vol.img}
-                          alt={vol.name}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                      </div>
-                      <div className="pt-4 pb-2 text-center">
-                        <h4 className="font-['Rajdhani'] text-lg font-bold text-[#1c2130] uppercase tracking-wider">
-                          <Link to="/our-team" className="hover:text-[#82b29a] transition-colors">
-                            {vol.name}
-                          </Link>
-                        </h4>
-                        <p className="text-xs text-[#82b29a] font-semibold uppercase tracking-wider font-mono mt-0.5">
-                          {vol.role}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-              </div>
+              <Link
+                to="/our-team"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white border border-gray-200 hover:border-[#1b1e2c] rounded-full text-xs font-['Rajdhani'] font-bold uppercase tracking-widest text-[#426a57] hover:text-[#1c2130] transition-colors shadow-sm"
+              >
+                <span>Meet All Members</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
+          </div>
+
+          {/* 4-Card Responsive Grid with Circular Looping */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {visibleVolunteers.map((vol, idx) => (
+              <div
+                key={vol.name + idx + volunteerIndex}
+                className="group bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-[0_15px_35px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.16)] transition-all duration-500 hover:-translate-y-1.5 p-3.5 flex flex-col"
+              >
+                <div className="overflow-hidden rounded-2xl bg-gray-100 aspect-[4/5] relative">
+                  <img
+                    src={vol.img}
+                    alt={vol.name}
+                    className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                </div>
+                <div className="pt-4 pb-2 text-center">
+                  <h4 className="font-['Rajdhani'] text-lg font-bold text-[#1c2130] uppercase tracking-wider">
+                    <Link to="/our-team" className="hover:text-[#82b29a] transition-colors">
+                      {vol.name}
+                    </Link>
+                  </h4>
+                  <p className="text-xs text-[#82b29a] font-semibold uppercase tracking-wider font-mono mt-0.5">
+                    {vol.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Carousel Dots Indicator */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {teamVolunteers.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setVolunteerIndex(i)}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  volunteerIndex === i
+                    ? 'w-8 h-2 bg-[#82b29a]'
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to volunteer slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </section>
