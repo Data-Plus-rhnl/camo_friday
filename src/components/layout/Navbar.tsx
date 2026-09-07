@@ -447,10 +447,11 @@ const Navbar: React.FC = () => {
           <div className="flex items-center space-x-4">
             <Link
               to="/donate"
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 bg-[#82b29a] hover:bg-[#93c7ae] text-[#0c0f16] font-['Rajdhani'] font-bold text-xs uppercase tracking-[0.16em] rounded-full transition-all duration-200 shadow-[0_4px_16px_rgba(130,178,154,0.3)] hover:shadow-[0_6px_22px_rgba(130,178,154,0.45)] hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-2 sm:py-2.5 bg-[#82b29a] hover:bg-[#93c7ae] text-[#0c0f16] font-['Rajdhani'] font-bold text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] rounded-full transition-all duration-200 shadow-[0_4px_16px_rgba(130,178,154,0.3)] hover:shadow-[0_6px_22px_rgba(130,178,154,0.45)] hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
             >
-              <Heart className="w-3.5 h-3.5 fill-[#0c0f16]" />
-              <span>Donate Now</span>
+              <Heart className="w-3.5 h-3.5 fill-[#0c0f16] shrink-0" />
+              <span className="sm:hidden">Donate</span>
+              <span className="hidden sm:inline">Donate Now</span>
             </Link>
 
             {/* Mobile Menu Toggle Button */}
