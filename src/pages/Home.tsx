@@ -99,6 +99,24 @@ const Home: React.FC = () => {
     setCurrentSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length);
   };
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (diff > 45) {
+      nextVolunteers();
+    } else if (diff < -45) {
+      prevVolunteers();
+    }
+    setTouchStartX(null);
+  };
+
   const nextVolunteers = () => {
     setVolunteerIndex((prev) => (prev + 1) % teamVolunteers.length);
   };
@@ -792,8 +810,40 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* 4-Card Responsive Grid with Circular Looping */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Mobile Single Card View (with Touch Swipe) */}
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="block sm:hidden"
+          >
+            <div className="group bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-[0_15px_35px_-12px_rgba(0,0,0,0.08)] p-4 flex flex-col max-w-sm mx-auto">
+              <div className="overflow-hidden rounded-2xl bg-gray-100 aspect-[4/5] relative">
+                <img
+                  src={teamVolunteers[volunteerIndex].img}
+                  alt={teamVolunteers[volunteerIndex].name}
+                  className="w-full h-full object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              </div>
+              <div className="pt-4 pb-2 text-center">
+                <h4 className="font-['Rajdhani'] text-2xl font-bold text-[#1c2130] uppercase tracking-wider">
+                  <Link to="/our-team" className="hover:text-[#82b29a] transition-colors">
+                    {teamVolunteers[volunteerIndex].name}
+                  </Link>
+                </h4>
+                <p className="text-xs text-[#82b29a] font-semibold uppercase tracking-wider font-mono mt-1">
+                  {teamVolunteers[volunteerIndex].role}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-center text-[11px] text-gray-400 font-mono tracking-wider mt-3 uppercase">
+              Swipe or tap arrows to meet the team
+            </p>
+          </div>
+
+          {/* Tablet & Desktop 4-Card Responsive Grid with Circular Looping */}
+          <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {visibleVolunteers.map((vol, idx) => (
               <div
                 key={vol.name + idx + volunteerIndex}
