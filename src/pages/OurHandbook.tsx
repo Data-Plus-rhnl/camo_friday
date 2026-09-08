@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import {
   Download,
-  ShieldCheck,
   Heart,
   Users,
   AlertCircle,
@@ -14,40 +13,54 @@ import {
   Sparkles,
   Award,
   PhoneCall,
+  HelpCircle,
 } from 'lucide-react';
 
 const handbookChapters = [
   {
     number: '01',
-    icon: AlertCircle,
-    title: 'Recognizing Warning Signs',
-    subtitle: 'IDENTIFYING HIDDEN DISTRESS',
+    icon: BookOpen,
+    page: 'PAGE 01',
+    title: 'What Is Mental Health?',
+    subtitle: "LISTEN • SPEAK UP • DON'T CAMO",
     description:
-      'Detailed guidance on noticing subtle behavioral shifts, mood swings, withdrawal from hobbies, sleep disruptions, and quiet emotional struggles in teenagers and young adults.',
+      'Defines mental health per the World Health Organization as a foundation for our thoughts, feelings, and actions. Outlines the biological, personal, trauma, and social factors that impact mental wellness.',
   },
   {
     number: '02',
-    icon: Users,
-    title: 'Opening The Conversation',
-    subtitle: 'PRACTICAL TALKING SCRIPTS',
+    icon: HelpCircle,
+    page: 'PAGE 02',
+    title: 'What Is Mental Illness?',
+    subtitle: 'END THE STIGMA',
     description:
-      'Actionable communication prompts and non-judgmental questions designed for parents, educators, coaches, and friends to break the ice and create psychological safety.',
+      'Explains that mental illness does not discriminate by age, gender, or background. Highlights common conditions from anxiety and depression to bipolar disorder and PTSD, emphasizing that recovery with treatment is achievable.',
   },
   {
     number: '03',
-    icon: ShieldCheck,
-    title: 'Immediate Crisis Protocols',
-    subtitle: 'ACTIONABLE STEPS WHEN IT COUNTS',
+    icon: AlertCircle,
+    page: 'PAGE 03',
+    title: 'What Are The Warning Signs?',
+    subtitle: 'STOP CAMOUFLAGING',
     description:
-      'Step-by-step guidance on what to do if someone expresses suicidal thoughts, including direct emergency hotlines, de-escalation methods, and regional British Columbia clinics.',
+      'Identifies critical warning signs to watch for: persistent sadness or withdrawal for over 2 weeks, self-harm, suicidal thoughts, feeling numb, risk-taking, concentration issues, and sudden changes in mood, eating, or sleep.',
   },
   {
     number: '04',
-    icon: Heart,
-    title: 'Community & Peer Support',
-    subtitle: 'BUILDING A CULTURE OF SAFETY',
+    icon: PhoneCall,
+    page: 'PAGE 04',
+    title: 'How To Get Help & Support Others',
+    subtitle: 'CRISIS ACTION & 24/7 LIFELINES',
     description:
-      'Frameworks for high schools, sports teams, and workplaces to foster year-round mental wellness awareness, normalize vulnerability, and build resilient support networks.',
+      'Provides practical steps on being present, listening without judgment, and taking action. Features direct 24/7 Canadian crisis lines: Kids Help Phone, Victim Link BC, KUU-US Indigenous Crisis Line, and 911.',
+  },
+  {
+    number: '05',
+    icon: Heart,
+    page: 'PAGE 05',
+    title: 'What Is Stigma & How To End It',
+    subtitle: '5 ACTIONABLE WAYS TO MAKE AN IMPACT',
+    description:
+      'Examines internal guilt and external discrimination per CAMH research. Gives 5 tangible ways to eliminate stigma: Educate yourself, Talk about it, Be aware, Support one another, and Be inclusive.',
   },
 ];
 
@@ -188,7 +201,7 @@ const OurHandbook: React.FC = () => {
                     <span>Free PDF</span>
                   </span>
                   <span className="text-gray-300">•</span>
-                  <span>24 Pages</span>
+                  <span>5-Page Official Guide</span>
                   <span className="text-gray-300">•</span>
                   <span className="text-[#426a57] font-bold">Direct Download</span>
                 </div>
@@ -276,7 +289,7 @@ const OurHandbook: React.FC = () => {
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#82b29a] font-['Rajdhani'] font-bold text-xs tracking-[0.25em] uppercase">
               <span className="w-2 h-2 rounded-full bg-[#82b29a] animate-pulse" />
-              <span>ACTIONABLE GUIDANCE</span>
+              <span>AUTHENTIC 5-PAGE GUIDE</span>
             </div>
 
             <h2 className="font-['Rajdhani'] text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight leading-tight">
@@ -287,17 +300,20 @@ const OurHandbook: React.FC = () => {
             </h2>
 
             <p className="text-gray-300 font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-              Practical, compassionate tools compiled to help you support your friends, students, and family.
+              Practical, compassionate tools and crisis lifelines directly from the official CamoFriday resource guide.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {handbookChapters.map((chapter) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8">
+            {handbookChapters.map((chapter, idx) => {
               const Icon = chapter.icon;
+              const colSpan = idx < 3 ? 'lg:col-span-2' : 'lg:col-span-3';
+              const mdSpan = idx === 4 ? 'md:col-span-2' : 'md:col-span-1';
+
               return (
                 <div
                   key={chapter.number}
-                  className="bg-white/95 backdrop-blur-xl rounded-3xl p-7 sm:p-8 border border-white/30 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_60px_-12px_rgba(130,178,154,0.35)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group relative overflow-hidden"
+                  className={`bg-white/95 backdrop-blur-xl rounded-3xl p-7 sm:p-8 border border-white/30 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_60px_-12px_rgba(130,178,154,0.35)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group relative overflow-hidden ${colSpan} ${mdSpan}`}
                 >
                   {/* Subtle Big Background Number Watermark */}
                   <span className="absolute -top-3 -right-2 text-7xl font-mono font-black text-gray-900/[0.04] pointer-events-none select-none">
@@ -310,7 +326,7 @@ const OurHandbook: React.FC = () => {
                         <Icon className="w-6 h-6" />
                       </div>
                       <span className="font-mono text-xs font-bold text-[#82b29a] tracking-wider uppercase px-3 py-1 rounded-full bg-[#82b29a]/10 border border-[#82b29a]/20">
-                        CHAPTER {chapter.number}
+                        {chapter.page}
                       </span>
                     </div>
 
@@ -330,7 +346,7 @@ const OurHandbook: React.FC = () => {
 
                   {/* Card Bottom Progress Pill */}
                   <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-mono text-gray-400">
-                    <span>SECTION {chapter.number} OF 04</span>
+                    <span>PAGE {chapter.number} OF 05</span>
                     <span className="w-8 h-0.5 bg-gray-200 group-hover:w-16 group-hover:bg-[#82b29a] transition-all duration-300" />
                   </div>
                 </div>

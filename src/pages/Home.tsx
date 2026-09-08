@@ -28,7 +28,7 @@ const bannerSlides = [
     subtitle: 'DONATE & EMPOWER',
     title: 'Together we can help change the face of mental health',
     description:
-      '100% of community contributions fund academic scholarships, local wellness workshops, and youth support networks.',
+      'Community donations directly fund post-secondary scholarships for graduating B.C. youth and local mental health resources.',
     primaryBtn: { text: 'Make A Donation', link: '/donate' },
     secondaryBtn: { text: 'View Impact', link: '/our-work' },
     bg: '/img/banner/banner_img_2.png',
@@ -249,51 +249,51 @@ const Home: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Right Column: Floating Frosted Glass Impact Card */}
+                  {/* Right Column: Floating Frosted Glass Movement Insight Card */}
                   <div className="hidden lg:block lg:col-span-5 xl:col-span-4">
                     <div className="bg-[#0c0f16]/75 backdrop-blur-2xl border border-white/15 rounded-3xl p-7 xl:p-8 max-w-sm ml-auto shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
                       <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
                         <div className="flex items-center gap-2">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#82b29a]" />
                           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-300 font-mono">
-                            CAMOFRIDAYS IMPACT
+                            CAMOFRIDAY MOVEMENT
                           </span>
                         </div>
                         <span className="text-[11px] font-bold text-[#82b29a] tracking-widest font-mono">
-                          EST. 2023
+                          EST. 2017
                         </span>
                       </div>
 
-                      {/* Stat 1 */}
+                      {/* Fact 1 - Authentic CMHA Statistic from Our Handbook */}
                       <div className="space-y-4">
                         <div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-['Rajdhani'] text-4xl font-extrabold text-[#faf7e3] tracking-tight">
-                              $150,000+
+                              1 IN 5
                             </span>
                             <span className="text-xs font-semibold text-[#82b29a] uppercase tracking-wider">
-                              Raised
+                              In Canada
                             </span>
                           </div>
                           <p className="text-xs text-gray-400 font-sans mt-0.5">
-                            Grassroots community funding for mental wellness workshops & scholarships.
+                            According to CMHA, 1 in 5 people will personally experience a mental health problem or illness each year.
                           </p>
                         </div>
 
                         <div className="h-[1px] bg-white/10" />
 
-                        {/* Stat 2 */}
+                        {/* Fact 2 - Core Grassroots Action from Original Site */}
                         <div>
                           <div className="flex items-baseline gap-2">
                             <span className="font-['Rajdhani'] text-4xl font-extrabold text-[#faf7e3] tracking-tight">
-                              100%
+                              EVERY FRIDAY
                             </span>
                             <span className="text-xs font-semibold text-[#82b29a] uppercase tracking-wider">
-                              Direct Support
+                              Wear Camo
                             </span>
                           </div>
                           <p className="text-xs text-gray-400 font-sans mt-0.5">
-                            Every single dollar raised directly fuels youth mental wellness & suicide prevention.
+                            A visual reminder across schools, gyms, and workplaces that no one has to camouflage their struggle alone.
                           </p>
                         </div>
                       </div>

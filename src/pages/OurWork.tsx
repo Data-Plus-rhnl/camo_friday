@@ -25,7 +25,7 @@ const initiatives = [
     title: 'Our Handbook',
     subtitle: 'FREE CMHA RESOURCE GUIDE',
     description:
-      'Developed with the Canadian Mental Health Association, a 24-page actionable guide providing scripts, warning signs, and crisis lifelines for families and schools.',
+      'Developed with the Canadian Mental Health Association, an actionable 5-page guide providing warning signs, 24/7 crisis lifelines, and anti-stigma tools for families and schools.',
     image: '/img/event/event_thumb_02.png',
     link: '/our-handbook',
     actionText: 'Explore Handbook',
