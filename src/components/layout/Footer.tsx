@@ -199,9 +199,30 @@ const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Bar: Copyright & Crisis Resource */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-sans">
-          <p>© 2026 #CamoFriday Movement. In loving memory of Mitchell Slater (2002–2017).</p>
+        {/* Bottom Bar: Copyright, Developer Credit & Crisis Resource */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-sans">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <p>© 2026 #CamoFriday Movement. In loving memory of Mitchell Slater (2002–2017).</p>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <p className="flex items-center gap-1.5 text-gray-400">
+              <span>Developed by</span>
+              <a
+                href="https://quantumflowit.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-bold text-gray-300 hover:text-[#4FD1FF] transition-all group"
+              >
+                <span className="relative w-4 h-4 rounded-[4px] overflow-hidden inline-flex items-center justify-center bg-white shadow-xs border border-white/20 shrink-0 transition-transform group-hover:scale-110">
+                  <img
+                    src="/img/qf-logo-avatar.png"
+                    alt="Quantum Flow Logo"
+                    className="w-full h-full object-contain p-[1px]"
+                  />
+                </span>
+                <span className="group-hover:underline underline-offset-2">Quantum Flow</span>
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-2 text-gray-400">
             <Heart className="w-3.5 h-3.5 text-[#e07a5e]" />
             <span>Canada Suicide Crisis Helpline: <strong>Call or Text 988</strong> (24/7)</span>
